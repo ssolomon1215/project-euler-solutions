@@ -6,23 +6,53 @@
 // Find the sum of all the multiples of 3 or 5 below 1000.
 */
 
-function euler1(target1, target2, limit) 
-{
-	var sum = 0;
 
-	for(x = 0; x < limit; x++) 
+// expects first number to be the limit and all arguments proceeding it to be those it compares against
+function euler1() 
+{
+	var int_sum = 0,
+		str_evalStatement = "";
+
+	for (i = 0, l = arguments.length; i < l; i++)
 	{
 		
-		if(x % target1 === 0 || x % target2 === 0) 
+		// some quick and dirty testing to make sure input is numeric
+		try
 		{
-			sum += x;
+			if(typeof arguments[i] !== 'number') 
+			{
+				throw i + "is not a number.";
+			}
+		}
+		catch(err)
+		{
+			alert("Error: Argument " + err);
 		}
 		
-		if(x === limit-1) 
+		if(i > 0) 
 		{
-			return sum;
+			if(l > i+1)
+			{
+				str_evalStatement = str_evalStatement + "x %" + arguments[i] + " === 0" + " || ";
+			} 
+			else 
+			{
+				str_evalStatement = str_evalStatement + "x %" + arguments[i] + " === 0";
+			}
 		}	
+		
+		// retained for debugging of eval statement creation
+		// console.log(str_evalStatement);
 	}
+	
+	{
+		if(eval(str_evalStatement)) 
+		{
+			int_sum += x;
+		}
+	}
+
+	return int_sum;
 }
 
-console.log(euler1(3, 5, 1000));
+document.write(euler1(1000, 3, 5));
