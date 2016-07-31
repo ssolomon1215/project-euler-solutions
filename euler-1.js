@@ -11,6 +11,7 @@
 function euler1() 
 {
 	var int_sum = 0,
+		int_limit = arguments[0],
 		str_evalStatement = "";
 
 	for (i = 0, l = arguments.length; i < l; i++)
@@ -45,6 +46,7 @@ function euler1()
 		// console.log(str_evalStatement);
 	}
 	
+	for(x = 0; x < int_limit; x++) 
 	{
 		if(eval(str_evalStatement)) 
 		{
@@ -56,3 +58,4 @@ function euler1()
 }
 
 document.write(euler1(1000, 3, 5));
+
